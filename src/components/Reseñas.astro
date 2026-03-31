@@ -1,0 +1,80 @@
+---
+const reseñas = [
+  {
+    nombre: "Juan Delgado",
+    iniciales: "JD",
+    comentario: "Excelente servicio, el personal es muy amable y el local está impecable. ¡Súper recomendado!",
+    color: "bg-cyan-500",
+    fecha: "Hace 2 semanas"
+  },
+  {
+    nombre: "Maria López",
+    iniciales: "ML",
+    comentario: "Me encantó el resultado. Es difícil encontrar un lugar con tanta atención al detalle. Volveré sin duda.",
+    color: "bg-pink-500",
+    fecha: "Hace 1 mes"
+  },
+  {
+    nombre: "Carlos Pérez",
+    iniciales: "CP",
+    comentario: "El mejor servicio de la zona. Muy puntuales y profesionales. La atención por WhatsApp fue muy rápida.",
+    color: "bg-blue-600",
+    fecha: "Hace 3 días"
+  },
+  {
+  nombre: "Alan Gab",
+  iniciales:"AG",
+  comentario:"Un buen servicio atienden de la mejor manera y son bastante profesionales",
+  color:"bg-pink-500",
+  fecha: "hace 1 mes"
+  }
+];
+---
+<section id="Reseñas" class="py-24 bg-slate-900">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-white mb-4 italic tracking-tight uppercase">
+        Lo que dicen nuestros clientes
+      </h2>
+      <div class="h-1 w-20 bg-cyan-500 mx-auto rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {reseñas.map((r) => (
+        <article class="reveal bg-white p-8 rounded-[2.5rem] shadow-2xl flex flex-col justify-between hover:-translate-y-3 transition-all duration-500">
+          
+          <div>
+            <div class="flex gap-1 mb-6 text-amber-400">
+              {[1, 2, 3, 4, 5].map(() => (
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+
+            <blockquote class="text-slate-600 italic mb-8 leading-relaxed text-base">
+              "{r.comentario}"
+            </blockquote>
+          </div>
+
+          <div class="flex items-center gap-4 border-t border-slate-50 pt-6">
+            <div class={`w-12 h-12 ${r.color} rounded-2xl flex items-center justify-center text-white font-black shadow-lg transform rotate-3`}>
+              <span class="-rotate-3">{r.iniciales}</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-800 text-sm mb-1">{r.nombre}</h4>
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-widest font-medium">
+                  {r.fecha}
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

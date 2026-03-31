@@ -1,0 +1,92 @@
+---
+import { Image } from 'astro:assets';
+import imagen1 from '../assets/imagenes/limpia1.jpg';
+import imagen2 from '../assets/imagenes/limpia5.jpg';
+import imagen3 from '../assets/imagenes/limpieza3.jpg';
+ 
+const procesos = [
+  {
+    titulo: "Cuidado Dental Integral para Toda la Familia",
+    descripcion: "En Consultorio Dental DienteMaxi, sabemos que la salud bucal es esencial para el bienestar general. Nuestro equipo está comprometido en ofrecer una amplia variedad de servicios.",
+    puntos: [], 
+    imagen: imagen1,
+    fondoAzul_blanco: true 
+  },
+  {
+    titulo: "Odontología Preventiva",
+    descripcion: "La odontología preventiva está en el corazón de nuestra práctica. Nuestro cuidado preventivo integral incluye:",
+    puntos: [
+      "Exámenes Dentales Regulares",
+      "Limpiezas Dentales Profesionales",
+      "Selladores Dentales y Tratamientos de Flúor",
+      "Educación sobre Higiene Oral"
+    ],
+    imagen: imagen2,
+    fondoAzul_blanco: false
+  },
+  {
+    titulo: "Cuidado de salud dental",
+    descripcion: "Consultorio dental Dientemaxi donde tu sonrisa es blanca hasta al maximo",
+    puntos: [
+        "Donde te analizamos tus dientes 🦷",
+        "Donde vemos por ti",
+        "Donde se nota la diferencia",
+        "Donde puedes presumir tu sonrisa"
+    ],
+    imagen: imagen3,
+    fondoAzul_blanco: true
+  }
+];
+---
+
+<section class="bg-white">
+  {procesos.map((proc, index) => (
+    <div class="max-w-7xl mx-auto px-6 py-10">
+      <div class={`grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-[3rem] shadow-xl border border-slate-100 ${index % 2 !==0 ? 'lg:direction-rtl' : ''}`}>
+        
+        <div class={`relative h-[400px] lg:h-auto overflow-hidden ${index % 2 !== 0 ? 'lg:order-last' : ''}`}>
+          <Image 
+            src={proc.imagen} 
+            alt={proc.titulo} 
+            class="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
+          />
+        </div>
+
+        <div class={`${proc.fondoAzul_blanco ? 'bg-[#D8EEF3]' : 'bg-[#F8FAFC]'} p-10 lg:p-20 flex flex-col justify-center`}>
+          <h2 class="text-4xl font-bold text-slate-800 mb-6 leading-tight">
+            {proc.titulo}
+          </h2>
+          
+          <p class="text-slate-700 text-lg mb-6">{proc.descripcion}</p>
+
+          {proc.puntos.length > 0 && (
+            <ul class="space-y-3 mb-10">
+              {proc.puntos.map((punto) => (
+                <li class="flex items-start gap-2 text-slate-700 font-medium">
+                  <span class="text-cyan-600 mt-1">°</span>
+                  {punto}
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <div class="flex">
+            <a 
+              href="#contacto"
+              class="bg-[#74C69D] hover:bg-[#52B788] text-white font-bold py-4 px-10 rounded-full text-sm shadow-md transition-all uppercase tracking-widest"
+            >
+              Agendar Cita
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  ))}
+</section>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

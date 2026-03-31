@@ -1,0 +1,59 @@
+<section id="contacto" class="py-3 px-1 max-w-7xl mx-auto scroll-mt-1">
+  <h2 class="text-4xl md:text-6xl font-black text-center mb-16 text-slate-900">Contáctanos</h2>
+
+  <div class="grid lg:grid-cols-2 gap-8 mb-12">
+    <form id="contact-form" class="bg-white p-10 rounded-[2.5rem] shadow-2xl border border-slate-100 space-y-4">
+      <h3 class="text-2xl font-bold text-cyan-600 mb-4">Envíanos un mensaje</h3>
+      <input type="text" name="nombre" required placeholder="Nombre completo" class="w-full p-4 border rounded-xl" />
+      <input type="email" name="email" required placeholder="Correo electrónico" class="w-full p-4 border rounded-xl" />
+      <input type="tel" name="telefono" required placeholder="Numero de telefono" class="w-full p-4 border rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none transition-all"/>
+      <textarea name="mensaje" required rows="4" placeholder="¿Cómo podemos ayudarte?" class="w-full p-4 border rounded-xl"></textarea>
+      <button type="submit" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold hover:bg-cyan-500 transition-all shadow-lg">
+        Enviar mensaje
+      </button>
+      <p id="response-msg" class="text-center font-bold mt-4 hidden"></p>
+    </form>
+    
+
+    <div class="bg-slate-900 text-white p-10 rounded-[2.5rem] flex flex-col justify-center space-y-6 shadow-2xl relative overflow-hidden">
+      <h3 class="text-2xl font-bold text-cyan-400">Información para Contactarnos</h3>
+      <div class="space-y-4 text-lg">
+        <p>🚩 Ubicación: Valle de Chalco / Ixtapaluca</p>
+        <p>📞 56 2033 xxxx</p>
+        <p>📧 contacto@sonrisasmaxi.com</p>
+        <p>🕒 Lun - Sáb: 9:00 - 18:00</p>
+        <p>📅 Contamos con citas los dias sabados y domingos para tu comodidad</p>
+        <p>✔  Tenemos la mejor tecnologia para revisarte y atenderte</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  import { createClient } from '@supabase/supabase-js'
+  const supabase = createClient(import.meta.env.PUBLIC_SUPABASE_URL, import.meta.env.PUBLIC_SUPABASE_ANON_KEY);
+  const form = document.getElementById('contact-form');
+  const msg = document.getElementById('response-msg');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const { error } = await supabase.from('contactos').insert([{ 
+      nombre: formData.get('nombre'), 
+      email: formData.get('email'), 
+      telefono: formData.get('telefono'),
+      mensaje: formData.get('mensaje') 
+    }]);
+
+    form.classList.remove('hidden');
+    if (error) {
+      msg.textContent = "Error: " + error.message;
+      msg.className = "text-red-500 mt-4";
+    } else {
+      msg.textContent = "¡Enviado con éxito!";
+      msg.className = "text-green-500 mt-4";
+      e.target.reset();
+    }
+  });
+</script>

@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+import doctor1 from '../assets/imagenes/doctor1.jpg';
+import doctora from '../assets/imagenes/doctora.jpg'
+import images from '../assets/imagenes/images.jpg'
+const equipo = [
+  {
+    nombre: "Dr. Roberto Silva", 
+    especialidad: "Cirujano Dentista", 
+    frase: "Elegí esta profesión porque creo que una sonrisa sana es la base de la confianza.",
+    img: doctor1, 
+  },
+  { 
+    nombre: "Dra. Elena Méndez", 
+    especialidad: "Ortodoncista", 
+    frase: "Me apasiona el arte de alinear sonrisas; es como esculpir felicidad.",
+    img: doctora,
+  },
+  {
+    nombre: "Dr. rodolfo",
+    especialidad: "Ortodoncista",
+    frase: "Me apasiona ver a la gente feliz con esa sonrisa bonita que nos caracterisa a todos.",
+    img: images,
+  }
+];
+---
+<section class="py-24 bg-slate-50 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+      <div class="max-w-2xl">
+        <h2 class="text-5xl font-black text-slate-900 mb-4">Nuestro <span class="text-cyan-500 italic">Equipo</span></h2>
+        <p class="text-slate-600 text-lg">Especialistas comprometidos con tu bienestar y tu salud dental.</p>
+      </div>
+      <div class="hidden md:block h-px flex-1 bg-slate-200 mx-10 mb-6"></div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      {equipo.map((doc) => (
+        <div class="reveal group relative bg-white rounded-[3rem] p-4 shadow-xl border border-slate-100 flex flex-col lg:flex-row items-center gap-8 transition-all hover:shadow-cyan-100">
+          <div class="w-full lg:w-64 h-80 rounded-[2.5rem] overflow-hidden shadow-lg">
+            <Image
+              src={doc.img}
+              alt={doc.nombre} 
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+            />
+          </div>
+          <div class="flex-1 p-4">
+            <span class="bg-cyan-100 text-cyan-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">{doc.especialidad}</span>
+            <h3 class="text-3xl font-black text-slate-900 mt-4 mb-4">{doc.nombre}</h3>
+            <p class="text-slate-500 italic leading-relaxed">"{doc.frase}"</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

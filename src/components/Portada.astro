@@ -1,0 +1,29 @@
+---
+import { Image } from 'astro:assets';
+import Porta from '../assets/imagenes/trato.jpg';
+---
+<header class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <Image 
+      src={Porta} 
+      alt="Clínica Dental" 
+      class="w-full h-full object-cover scale-105 animate-slow-zoom"
+    />
+    <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-[2px]"></div>
+  </div>
+  <div class="relative z-10 px-6 max-w-4xl reveal">
+    <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter">
+      Clínica <span class="text-gradient">SonrisaMaxi</span>
+    </h1>
+    <p class="text-lg md:text-2xl text-slate-300 mb-10 font-light leading-relaxed">
+      Salud dental con tecnología moderna y estética de nivel profesional.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#servicios" class="btn-primary">Ver servicios</a>
+      <a href="#contacto" class="btn-secondary">Agendar Cita</a>
+      <a href="#Ubicacion" class="btn-three">Ubicación</a>
+      <a href="#Reseñas" class="btn-four">Reseñas</a>
+
+    </div>
+  </div>
+</header>
